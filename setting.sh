@@ -24,7 +24,7 @@ g++ -I./ -c ${GTEST_DIR_NAME}/gtest_main.cc
 mv gtest*.o gtest
 
 # gtest execution shell
-echo 'g++ '"-I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o \n' >> gtest-exce.sh
-echo 'g++ -o $1-test $1.o'" ${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exce.sh
-echo './$1-test \n' >> gtest-exce.sh
-echo 'rm -f $1.o $1-test ' >> gtest-exce.sh
+echo 'g++ '"-I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o \n' >> gtest-exec.sh
+echo 'g++ -o $1-test $1.o'" ${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exec.sh
+echo './$1-test \n' >> gtest-exec.sh
+echo 'rm -f $1.o $1-test ' >> gtest-exec.sh
