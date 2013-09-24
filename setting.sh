@@ -27,5 +27,8 @@ mv gtest*.o gtest
 echo 'g++ -g '"-I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o \n' >> gtest-exec.sh
 echo 'g++ -g -o $1-test $1.o'" ${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exec.sh
 echo './$1-test \n' >> gtest-exec.sh
-echo 'rm -f $1.o $1-test ' >> gtest-exec.sh
+echo 'if [ $# -ne 2 ]; then' >> gtest-exec.sh
+echo '	rm -f $1.o $1-test' >> gtest-exec.sh
+echo '	echo "remove compile file."' >> gtest-exec.sh
+echo 'fi' >> gtest-exec.sh
 
