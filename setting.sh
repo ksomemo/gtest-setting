@@ -5,9 +5,19 @@ PROJECT_DIR=`pwd`
 VENDOR_DIR_NAME=vendor
 GTEST_DIR_NAME=gtest
 SRC_DIR_NAME=src
+TEST_DIR_NAME='test'
 VENDOR_DIR=${PROJECT_DIR}/${VENDOR_DIR_NAME}
 GTEST_DIR=${VENDOR_DIR}/${GTEST_DIR_NAME}
 SRC_DIR=${PROJECT_DIR}/${SRC_DIR_NAME}
+TEST_DIR=${PROJECT_DIR}/${TEST_DIR_NAME}
+
+if [ ! -e ${SRC_DIR} ]; then
+  mkdir ${SRC_DIR}
+fi
+
+if [ ! -e ${TEST_DIR} ]; then
+  mkdir ${TEST_DIR}
+fi
 
 # download
 mkdir ${VENDOR_DIR}
