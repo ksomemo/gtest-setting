@@ -15,14 +15,14 @@ vendorディレクトリにgtestの実行をテストコードを指定するだ
 * プロダクトコードは、プロジェクト直下のsrcディレクトリに格納すること
 * テストコードは、プロジェクト直下のtestディレクトリに格納すること
 
+srcおよびtestディレクトリはインストール時に作成されます
+
 使い方
 =============
 ``` sh
 # setting
 cd path/to/projectRoot
-clone this repository
-sh repository/setting.sh
-mkdir src test
+curl https://raw.github.com/ksomemo/gtest-setting/master/setting.sh | sh 
 
 # create test codeand project code
 
