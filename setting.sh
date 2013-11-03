@@ -58,9 +58,9 @@ else
 	read USE
 	if [ "$USE" = "y" -o "$USE" = "yes" -o "$USE" = "Y" ] ; then
 		if [ "$COMPILE_COMMAND" = ${COMPILE_GCC} ] ; then
-			STDLIB_OPT='-std=C++11'
+			STDLIB_OPT='-std=c++11'
 		elif [ "$COMPILE_COMMAND" = ${COMPILE_CLANG} ] ; then
-			STDLIB_OPT='-std=C++11 -stdlib=libc++'
+			STDLIB_OPT='-std=c++11 -stdlib=libc++'
 		fi
 	else
 		echo "You don't use C++11."
