@@ -10,6 +10,10 @@ VENDOR_DIR=${PROJECT_DIR}/${VENDOR_DIR_NAME}
 GTEST_DIR=${VENDOR_DIR}/${GTEST_DIR_NAME}
 SRC_DIR=${PROJECT_DIR}/${SRC_DIR_NAME}
 TEST_DIR=${PROJECT_DIR}/${TEST_DIR_NAME}
+COMPILE_GCC='g++'
+COMPILE_CLANG='clang++'
+COMPILE_COMMAND=${COMPILE_GCC}
+STDLIB_OPT=''
 
 if [ ! -e ${SRC_DIR} ]; then
   mkdir ${SRC_DIR}
@@ -29,13 +33,13 @@ rm -rf gtest-1.6.0
 
 # compile
 cd ${VENDOR_DIR}
-g++ -I./ -c ${GTEST_DIR_NAME}/gtest-all.cc
-g++ -I./ -c ${GTEST_DIR_NAME}/gtest_main.cc
+${COMPILE_COMMAND} -I./ -c ${GTEST_DIR_NAME}/gtest-all.cc
+${COMPILE_COMMAND} -I./ -c ${GTEST_DIR_NAME}/gtest_main.cc
 mv gtest*.o gtest
 
 # gtest execution shell
-echo 'g++ -g '"-I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o \n' >> gtest-exec.sh
-echo 'g++ -g -o $1-test $1.o'" ${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exec.sh
+echo "${COMPILE_COMMAND} -g -I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o'" \n" >> gtest-exec.sh
+echo "${COMPILE_COMMAND}"' -g -o $1-test $1.o '"${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exec.sh
 echo './$1-test \n' >> gtest-exec.sh
 echo 'if [ $# -ne 2 ]; then' >> gtest-exec.sh
 echo '	rm -f $1.o $1-test' >> gtest-exec.sh
