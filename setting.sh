@@ -14,6 +14,7 @@ COMPILE_GCC='g++'
 COMPILE_CLANG='clang++'
 COMPILE_COMMAND=${COMPILE_GCC}
 STDLIB_OPT=''
+SCRIPT_NAME='gtest-exec.sh'
 
 if [ ! -e ${SRC_DIR} ]; then
   mkdir ${SRC_DIR}
@@ -38,11 +39,11 @@ ${COMPILE_COMMAND} -I./ -c ${GTEST_DIR_NAME}/gtest_main.cc
 mv gtest*.o gtest
 
 # gtest execution shell
-echo "${COMPILE_COMMAND} -g -I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o'" \n" >> gtest-exec.sh
-echo "${COMPILE_COMMAND}"' -g -o $1-test $1.o '"${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> gtest-exec.sh
-echo './$1-test \n' >> gtest-exec.sh
-echo 'if [ $# -ne 2 ]; then' >> gtest-exec.sh
-echo '	rm -f $1.o $1-test' >> gtest-exec.sh
-echo '	echo "remove compile file."' >> gtest-exec.sh
-echo 'fi' >> gtest-exec.sh
+echo "${COMPILE_COMMAND} -g -I${VENDOR_DIR} -I${SRC_DIR}"' -c $1 -o $1.o'" \n" >> ${SCRIPT_NAME}
+echo "${COMPILE_COMMAND}"' -g -o $1-test $1.o '"${GTEST_DIR}/gtest-all.o ${GTEST_DIR}/gtest_main.o \n" >> ${SCRIPT_NAME}
+echo './$1-test \n' >> ${SCRIPT_NAME}
+echo 'if [ $# -ne 2 ]; then' >> ${SCRIPT_NAME}
+echo '	rm -f $1.o $1-test' >> ${SCRIPT_NAME}
+echo '	echo "remove compile file."' >> ${SCRIPT_NAME}
+echo 'fi' >> ${SCRIPT_NAME}
 
