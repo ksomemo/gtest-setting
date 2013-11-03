@@ -60,7 +60,7 @@ else
 		if [ "$COMPILE_COMMAND" = ${COMPILE_GCC} ] ; then
 			STDLIB_OPT='-std=C++11'
 		elif [ "$COMPILE_COMMAND" = ${COMPILE_CLANG} ] ; then
-			STDLIB_OPT='-std=C+11 -stdlib=libc++'
+			STDLIB_OPT='-std=C++11 -stdlib=libc++'
 		fi
 	else
 		echo "You don't use C++11."
