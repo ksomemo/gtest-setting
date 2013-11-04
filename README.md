@@ -5,9 +5,14 @@ gtestをダウンロードして、各プロジェクト用に設定するシェ
 
 概要
 =============
-プロジェクト直下にvendorディレクトリを作成し、その中にgtestのソース及びコンパイル済みファイルが格納されます。
+* プロジェクト直下にvendorディレクトリを作成します
+* その中にgtestのソース及びコンパイル済みファイルが格納されます
+* vendorディレクトリにgtestの実行をテストコードを指定するだけで実行できるようにするシェルを作成します
+* インストール時に、コンパイラを選べます(gcc,clang)
+* インストール時に、標準ライブラリとしてC++11を使えるか選べます
 
-vendorディレクトリにgtestの実行をテストコードを指定するだけで実行できるようにするシェルを作成します。
+ただし、clang,C++11の組み合わせはgtestと相性が悪いためおすすめしません。パッチを当てると解消されるようですが、そのパッチは当てていません。
+
 
 制約
 =============
@@ -22,7 +27,13 @@ srcおよびtestディレクトリはインストール時に作成されます
 ``` sh
 # setting
 cd path/to/projectRoot
-curl https://raw.github.com/ksomemo/gtest-setting/master/setting.sh | sh 
+curl -O https://raw.github.com/ksomemo/gtest-setting/master/setting.sh \
+&& chmod +x setting.sh \
+&& ./setting.sh \
+&& rm setting.sh
+
+# またはcloneして実行
+# 直接実行できない理由は、getoptsを使用しているため
 
 # create test codeand project code
 
